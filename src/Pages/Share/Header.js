@@ -1,17 +1,31 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import logo from '../../image/ifad_logo.png'
 import './Header.css' 
 
 const Header = () => {
 
+    const [user] = useAuthState(auth)
+
+    const logOut = () =>{
+        signOut(auth)
+    }
+
     const navbar = <>
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-        <li><a>Services</a></li>
-        <li><a>Teams</a></li>
-        <li><a>Projects</a></li>
-        <li><a>Blog</a></li>
-        <li><a>Contact</a></li>
+        <li><Link to={'/'}>Home</Link></li>
+        <li><Link to={'/'}>About</Link></li>
+        <li><Link to={'/'}>Services</Link></li>
+        <li><Link to={'/'}>Projects</Link></li>
+        <li><Link to={'/'}>Blog</Link></li>
+        <li><Link to={'/'}>Contact</Link></li>
+        { user?  
+        <li><Link to={'/my-profile'}>My Profile</Link></li>
+        :
+        <li><Link to={'/log-in'}>Log In</Link></li>}
+        { user? <li> <button onClick={logOut} className="bg-orange-200">Log Out</button></li>: <li><Link to={'/sign-up'}>Sign Up</Link></li>}
     </>
 
     return (

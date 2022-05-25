@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Part = ({ part }) => {
     const { name, img, description, MOQ, Available_Qty, Price } = part;
@@ -16,7 +17,7 @@ const Part = ({ part }) => {
                 <div className="badge bg-secondary text-white badge-outline">Availabe Qty: {Available_Qty}</div>
                 <div className="badge bg-[red] text-white black-outline">Price: {Price}</div>
                 <br />
-                <p className='btn btn-primary'>Order Now</p>
+                <NavLink to='/purchase' className='btn w-full btn-primary'>Order Now</NavLink>
 
             </div>
             </div>
