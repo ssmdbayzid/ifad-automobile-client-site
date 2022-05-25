@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import Part from './Part';
 
 const Parts = () => {
     const [parts, setParts] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/part')
-        .then(res=>res.json())
-        .then(data=>setParts(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setParts(data))
+    }, [])
 
     return (
         <div>
-            <h1 className='uppercase text-center text-2xl'>Choose the Right Automobile Spare Parts for Your Car</h1>
+            <h1 className='uppercase text-primary text-center text-3xl'>Choose the Right Parts for Your Car</h1>
+            <div className='grid gap-16 grid-cols-1 mt-12 shadow-lg lg:grid-cols-3'>
 
-            <h2>Total Parts Qty {parts && parts.length}</h2>
+
+                {
+                    parts && parts.map(part =>
+                        <Part
+                            key={part._id}
+                            part={part}
+                        ></Part>)
+                }
+            </div>
         </div>
     );
 };
