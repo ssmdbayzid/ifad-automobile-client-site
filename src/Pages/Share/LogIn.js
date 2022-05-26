@@ -1,48 +1,49 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
-
+import { FcGoogle } from "react-icons/fc";
 
 const LogIn = () => {
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
-        signInWithEmailAndPassword, signInUser, signInLoading, error1, ] = useSignInWithEmailAndPassword(auth);
+        signInWithEmailAndPassword, signInUser, signInLoading, error1,] = useSignInWithEmailAndPassword(auth);
 
     const navigate = useNavigate()
-        
+
     const location = useLocation()
-    
+
     let from = location?.state?.from?.pathname || "/home"
 
-    if(signInLoading){
+    if (signInLoading || gLoading) {
         return <p>Loading...</p>;
     }
 
-    if(signInUser){
-        navigate(from, {replace: true})
+    if (signInUser || gUser) {
+        navigate(from, { replace: true })
     }
 
-    
+
     let errors;
 
-    if(error1){ 
-        errors = <p className='text-[red]'>{error1.message}</p>
+    if (error1 || gError){
+        errors = <p className='text-[red]'>{error1.message} {gError.message}</p>
     }
 
-        const handleLogIn = e =>{
-            e.preventDefault()
-            const email = e.target.email.value;
-            const password = e.target.password.value;
-            signInWithEmailAndPassword(email, password)
-        }
+    const handleLogIn = e => {
+        e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        signInWithEmailAndPassword(email, password)
+    }
 
 
     return (
         <div className="hero min-h-screen rounded-lg bg-base-300">
 
             <div className="p-6 rounded-lg bg-orange-200 py-12 items-center w-2/5">
-            <h1 className='text-center text-accent text-3xl'>Please Log In</h1>
+                <h1 className='text-center text-accent text-3xl'>Please Log In</h1>
 
                 <form onSubmit={handleLogIn} className='w-full justify-center p-6'>
                     <label className="label">
@@ -63,7 +64,10 @@ const LogIn = () => {
                     </label>
                     <input type="submit" className='btn w-full btn-primary' value="Log In" />
                 </form>
+                <p onClick={()=>signInWithGoogle()} className='btn w-[89%] mx-6 text-lg'> <FcGoogle className='mr-3'/> Sign In With Google</p>
+
             </div>
+
         </div>
     );
 };

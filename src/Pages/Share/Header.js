@@ -4,28 +4,30 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import logo from '../../image/ifad_logo.png'
-import './Header.css' 
+import './Header.css'
 
 const Header = () => {
 
     const [user] = useAuthState(auth)
 
-    const logOut = () =>{
+    const logOut = () => {
         signOut(auth)
     }
 
     const navbar = <>
-        <li><Link to={'/'}>Home</Link></li>
-        <li><Link to={'/'}>About</Link></li>
-        <li><Link to={'/'}>Services</Link></li>
-        <li><Link to={'/'}>Projects</Link></li>
-        <li><Link to={'/'}>Blog</Link></li>
-        <li><Link to={'/'}>Contact</Link></li>
-        { user?  
-        <li><Link to={'/my-profile'}>My Profile</Link></li>
-        :
-        <li><Link to={'/log-in'}>Log In</Link></li>}
-        { user? <li> <button onClick={logOut} className="bg-orange-200">Log Out</button></li>: <li><Link to={'/sign-up'}>Sign Up</Link></li>}
+        <li><Link to={'home'}>Home</Link></li>
+        <li><Link to={'appointment'}>Appointment</Link></li>
+        <li><Link to={'review'}>Reviews</Link></li>
+        <li><Link to={'contact'}>Contact Us</Link></li>
+        <li><Link to={'about'}>About</Link></li>
+        {user && <li><Link to={'dashboard'}>Dashboard</Link></li>}
+        {user ? <button onClick={logOut} className='btn mx-3 btn-secondary'>Log Out</button>
+            :
+            <li><Link to={'log-in'}>Log In</Link></li>
+
+        }
+        {user ? '' : <li><Link to={'register'}>Register</Link></li>}
+
     </>
 
     return (
@@ -40,14 +42,14 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className='flex items-center justity-center'>
-                <img src={logo} style={{width: '150px'}} className="" alt="logo" />
-                <a className="text-primary font-bold normal-case text-xl">IFAD AUTOS LTD</a>
+                    <img src={logo} style={{ width: '150px' }} className="" alt="logo" />
+                    <a className="text-primary font-bold normal-case text-xl">IFAD AUTOS LTD</a>
                 </div>
 
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal  font-bold p-0">
-                {navbar}
+                    {navbar}
 
                 </ul>
             </div>

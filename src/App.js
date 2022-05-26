@@ -7,6 +7,7 @@ import LogIn from './Pages/Share/LogIn';
 import SignUp from './Pages/Share/SignUp';
 import Purchase from './Pages/Home/Purchase';
 import PrivateRoute from './Pages/Share/PrivateRoute';
+import NotFound from './Pages/Share/NotFound';
 
 function App() {
   return (
@@ -17,11 +18,12 @@ function App() {
         <Route path="/home" element={ <Home></Home> }></Route>
         <Route path="/log-in" element={<LogIn></LogIn>}></Route>
         <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
-        <Route path="/purchase" element={
+        <Route path="/purchase/:id" element={
           <PrivateRoute>
           <Purchase></Purchase>
           </PrivateRoute>
         }></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>
   );

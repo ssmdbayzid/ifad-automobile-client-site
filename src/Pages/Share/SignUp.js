@@ -1,27 +1,31 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React from 'react';
-import { useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import { FcGoogle } from "react-icons/fc";
+
 
 
 
 const SignUp = () => {
+const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
     const [
         createUserWithEmailAndPassword, signInUser, signInLoading, error1, ] = useCreateUserWithEmailAndPassword(auth);
 
     const navigate = useNavigate()
         
-    if(signInLoading){
+    if(signInLoading || gLoading){
         return <p>Loading...</p>;
     }
     
     let errors;
 
-    if(error1){ 
-        errors = <p className='text-[red]'>{error1.message}</p>
+    if(error1 || gError){ 
+        errors = <p className='text-[red]'>{error1.message} {gError.message}</p>
     }
-        if(signInUser){
+        if(signInUser || gUser){
             navigate('/home')
         }
 
@@ -59,6 +63,8 @@ const SignUp = () => {
                     {errors}
                     <input type="submit" className=' mt-2 btn w-full btn-primary' value="Sign Up" />
                 </form>
+                <p onClick={()=>signInWithGoogle()} className='btn w-[89%] mx-6 text-lg'> <FcGoogle className='mr-3'/> Sign Up With Google</p>
+
             </div>
         </div>
     );
