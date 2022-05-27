@@ -8,13 +8,12 @@ import { FcGoogle } from "react-icons/fc";
 const LogIn = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
-        signInWithEmailAndPassword, signInUser, signInLoading, error1,] = useSignInWithEmailAndPassword(auth);
+        signInWithEmailAndPassword, signInUser, signInLoading, error1] = useSignInWithEmailAndPassword(auth);
 
     const navigate = useNavigate()
 
     const location = useLocation()
 
-    console.log(signInLoading || gLoading)
 
     let from = location?.state?.from?.pathname || "/home"
 
@@ -30,13 +29,13 @@ const LogIn = () => {
     let errors;
 
     if (error1 || gError){
-        errors = <p className='text-[red]'>{error1.message} {gError.message}</p>
+        errors = <p className='text-[red]'>{error1?.message} {gError?.message}</p>
     }
 
-    const handleLogIn = e => {
-        e.preventDefault()
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+    const handleLogIn = event => {
+        event.preventDefault()
+        const email = event.target.email.value;
+        const password = event.target.password.value;
         signInWithEmailAndPassword(email, password)
         console.log(email, password)
     }

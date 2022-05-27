@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Purchase = () => {
@@ -53,7 +55,8 @@ const Purchase = () => {
             order_Qty: order_Qty,
             client: user.email,
             mobile: mobile,
-            address: address
+            address: address,
+            price: Price
         }
         
         fetch("http://localhost:5000/purchase", {
@@ -64,7 +67,12 @@ const Purchase = () => {
             body: JSON.stringify(book)
         })
         .then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+            console.log(data)
+            if(data.acknowledged){
+                toast.success('Thanks For Your Booking')
+                }
+        })
         
         // fetch("http://localhost:5000/user", {
         //         method: 'POST',

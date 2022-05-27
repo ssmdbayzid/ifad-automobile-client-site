@@ -46,6 +46,7 @@ const Order = () => {
                         <th>Order Qty</th>
                         <th>Total Price</th>
                         <th>Address</th>
+                        <th>Payment</th>
                         <th>Remove Items</th>
                     </tr>
                 </thead>
@@ -64,8 +65,11 @@ const Order = () => {
                                     <img style={{ width: '75px' }} src={part.img} alt="" />
                                 </td>
                                 <td>{part.order_Qty}</td>
-                                <td>{parseInt(part.order_Qty) * 100}</td>
-                                <td>${part.address}</td>
+                                <td>${parseInt(part.order_Qty) * parseInt(part.price)}</td>
+                                <td>{part.address}</td>
+                                <td>
+                                    <button  style={{ backgroundColor: 'primary', padding: '2px 10px', borderRadius: '10px' }} >Unpaid</button>
+                                </td>
                                 <td>
                                     <button onClick={()=>handleRemoveProduct(part._id)} style={{ backgroundColor: 'gold', padding: '2px 10px', borderRadius: '10px' }} >Remove</button>
                                 </td>

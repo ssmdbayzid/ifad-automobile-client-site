@@ -21,7 +21,12 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home></Home> }></Route>
         <Route path="/home" element={ <Home></Home> }></Route>
-        <Route path="/order" element={ <Order></Order> }></Route>
+        <Route path="/order" element={ 
+          <PrivateRoute>
+        <Order></Order> 
+        </PrivateRoute>
+
+        }></Route>
         <Route path='/profile' element={<Profile></Profile>}></Route>
         <Route path='/review' element={<Review></Review>}></Route>
         <Route path='/blog' element={<Blog></Blog>}></Route>
