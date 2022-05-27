@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 import { FcGoogle } from "react-icons/fc";
+import Loading from './Loading';
 
 const LogIn = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -18,7 +19,7 @@ const LogIn = () => {
     let from = location?.state?.from?.pathname || "/home"
 
     if (signInLoading || gLoading) {
-        return <p>Loading...</p>;
+        return <Loading></Loading>;
     }
 
     if (signInUser || gUser) {
@@ -37,7 +38,6 @@ const LogIn = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         signInWithEmailAndPassword(email, password)
-        console.log(email, password)
     }
 
 

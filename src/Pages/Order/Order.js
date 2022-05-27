@@ -25,7 +25,6 @@ const Order = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
                 if(data.deletedCount > 0){
                     const remainingProduct = bookedParts.filter(product => product._id !== id);
                     setBookedParts(remainingProduct)

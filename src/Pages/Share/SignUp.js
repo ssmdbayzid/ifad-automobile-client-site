@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle} from 'react-fir
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { FcGoogle } from "react-icons/fc";
+import Loading from './Loading';
 
 
 
@@ -17,7 +18,7 @@ const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const navigate = useNavigate()
         
     if(signInLoading || gLoading){
-        return <p>Loading...</p>;
+        return <Loading></Loading>;
     }
     
     let errors;

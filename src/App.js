@@ -13,35 +13,44 @@ import Review from './Pages/Review/Review';
 import Blog from './Pages/Blog/Blog';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Order from './Pages/Order/Order';
+import AllUser from './Pages/Dashboard/AllUser';
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
       <Routes>
-        <Route path="/" element={ <Home></Home> }></Route>
-        <Route path="/home" element={ <Home></Home> }></Route>
-        <Route path="/order" element={ 
-          <PrivateRoute>
-        <Order></Order> 
-        </PrivateRoute>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
 
-        }></Route>
-        <Route path='/profile' element={<Profile></Profile>}></Route>
-        <Route path='/review' element={<Review></Review>}></Route>
+
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path="/log-in" element={<LogIn></LogIn>}></Route>
         <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
         <Route path="/purchase/:id" element={
           <PrivateRoute>
-          <Purchase></Purchase>
+            <Purchase></Purchase>
           </PrivateRoute>
         }></Route>
         <Route path="/dashboard" element={
           <PrivateRoute>
-          <Dashboard></Dashboard>
+            <Dashboard></Dashboard>
           </PrivateRoute>
-        }></Route>
+        }>
+          <Route path="order" element={
+            <PrivateRoute>
+              <Order></Order>
+            </PrivateRoute>
+
+          }></Route>
+          <Route path='review' element={
+          <PrivateRoute>
+          <Review></Review>
+          </PrivateRoute>
+          }></Route>
+          <Route path='profile' element={<Profile></Profile>}></Route>
+          <Route path='allUser' element={<AllUser></AllUser>}></Route>
+        </Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>
