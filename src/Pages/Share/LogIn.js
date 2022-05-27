@@ -14,6 +14,8 @@ const LogIn = () => {
 
     const location = useLocation()
 
+    console.log(signInLoading || gLoading)
+
     let from = location?.state?.from?.pathname || "/home"
 
     if (signInLoading || gLoading) {
@@ -36,6 +38,7 @@ const LogIn = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         signInWithEmailAndPassword(email, password)
+        console.log(email, password)
     }
 
 

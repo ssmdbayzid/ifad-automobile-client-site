@@ -15,18 +15,19 @@ const Header = () => {
     }
 
     const navbar = <>
-        <li><Link to={'home'}>Home</Link></li>
-        <li><Link to={'appointment'}>Appointment</Link></li>
-        <li><Link to={'review'}>Reviews</Link></li>
-        <li><Link to={'contact'}>Contact Us</Link></li>
-        <li><Link to={'about'}>About</Link></li>
+        <li><Link to={'/home'}>Home</Link></li>
+        <li><Link to={'/about'}>About</Link></li>
+        {user && <li><Link to={'/order'}>Order</Link></li>}
+        { user && <li><Link to={'/review'}>Add a Reviews</Link></li>}
+        { user && <li><Link to={'/profile'}>My Profile</Link></li>}
+        <li><Link to={'/blog'}>Blog</Link></li>
         {user && <li><Link to={'dashboard'}>Dashboard</Link></li>}
         {user ? <button onClick={logOut} className='btn mx-3 btn-secondary'>Log Out</button>
             :
             <li><Link to={'log-in'}>Log In</Link></li>
 
         }
-        {user ? '' : <li><Link to={'register'}>Register</Link></li>}
+        {user ? '' : <li><Link to={'sign-up'}>Register</Link></li>}
 
     </>
 

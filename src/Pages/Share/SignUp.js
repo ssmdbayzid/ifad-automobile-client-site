@@ -34,7 +34,11 @@ const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
             const email = e.target.email.value;
             const password = e.target.password.value;
             createUserWithEmailAndPassword(email, password)
-        }
+
+            }
+
+
+
 
 
     return (
