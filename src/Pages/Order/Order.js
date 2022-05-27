@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 // import { Link } from 'react-router-dom';
 
 const Order = () => {
 
     const [bookedParts, setBookedParts] = useState([])
+    const [user] = useAuthState(auth)
 
     useEffect(()=>{
-        fetch('http://localhost:5000/purchased')
+        fetch(`http://localhost:5000/purchased?email=${user.email}`)
         .then(res=>res.json())
         .then(data=>setBookedParts(data))
 
