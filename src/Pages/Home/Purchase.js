@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -38,17 +38,14 @@ const Purchase = () => {
 
     }
     
-
     const handlePurchase = event => {
         
         event.preventDefault()
         const address = event.target.address.value;
         const mobile = event.target.mobile.value;
         const order_Qty = parseInt(event.target.order_Qty.value);
-
-        const balQty = {balQty: (parseInt(Available_Qty) - order_Qty)}
         
-        console.log(balQty)
+
         const book = {
             img: img,
             partName: name,
@@ -58,6 +55,7 @@ const Purchase = () => {
             address: address,
             price: Price
         }
+
         
         fetch("https://intense-ocean-10974.herokuapp.com/purchase", {
             method: 'POST',
@@ -92,8 +90,9 @@ const Purchase = () => {
 
 
     return (
-        <div className="hero min-h-screen p-16 rounded-lg bg-base-300">
-            <div className='flex items-center'>
+        <div className="hero flex min-h-screen p-16 rounded-lg bg-base-300">
+            
+            <div className='grid grid-cols-1 lg:grid-cols-2 items-center'>
                 <div className="card w-ful lg:max-w-lg bg-base-100 shadow-xl">
                     <figure><img src={img} alt="Shoes" /></figure>
                     <div className="card-body">
@@ -111,7 +110,7 @@ const Purchase = () => {
                     </div>
                 </div>
                 <div className='bg-orange-200 w-fluid p-3 m-5'>
-                    <h1 className='text-secondary text-2xl'>Product Receive Quantity</h1>
+                    <h1 className='text-secondary text-center text-2xl'>Product Receive Quantity</h1>
                     <form onSubmit={handlePurchase } className='grid grid-cols-1 gap-2 mt-12 justify-items-center'>
                         <input type="text" name='name' disabled value={user ? user.displayName : ''} className="input text-sm input-bordered w-full max-w-xs" required />
                         <input type="email" name='email' disabled value={user ? user.email : ''} className="input text-sm input-bordered w-full max-w-xs" required />
@@ -124,6 +123,7 @@ const Purchase = () => {
                         <input disabled={btnDisable} className='block mx-auto btn btn-secondary rounded-lg text-white text-lg py-3 w-[320px]' type="submit" value="Submit" />
                     </form>
                 </div>
+                <ToastContainer />
             </div>
         </div>
     );

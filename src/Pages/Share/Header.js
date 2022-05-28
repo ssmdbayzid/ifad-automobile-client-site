@@ -16,9 +16,7 @@ const Header = () => {
 
     const navbar = <>
         <li><Link to={'/home'}>Home</Link></li>
-        <li><Link to={'/about'}>About</Link></li>
-        {user && <li><Link to={'/order'}>Order</Link></li>}
-        { user && <li><Link to={'/review'}>Add a Reviews</Link></li>}
+        <li><Link to={'/#'}>About</Link></li>
         <li><Link to={'/protpolio'}>My Portfolio</Link></li>
         <li><Link to={'/blog'}>Blog</Link></li>
         {user && <li><Link to={'dashboard'}>Dashboard</Link></li>}

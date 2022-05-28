@@ -5,19 +5,16 @@ import Loading from '../Share/Loading';
 
 
 const AllProduct = () => {
-    const {data: allParts, isLoading, refetch} = useQuery('users', () => fetch('https://intense-ocean-10974.herokuapp.com/part').then(res=>res.json()))
+    const {data: allParts, isLoading, refetch} = useQuery('part', () => fetch('https://intense-ocean-10974.herokuapp.com/part').then(res=>res.json()))
 
     if(isLoading){
         return <Loading></Loading>
     }
 
-    console.log(allParts)
-
-
-
 
     const removePart = (id) => {
-        const proceed = window.confirm('Are You Sire');
+        console.log(id)
+        const proceed = window.confirm('Are You Sure');
         if(proceed){
             const url = `https://intense-ocean-10974.herokuapp.com/part/${id}`;
 
@@ -73,6 +70,7 @@ const AllProduct = () => {
                             </tbody>)
                     }
                 </table>
+                <ToastContainer />
             </div >
         </div>
     );

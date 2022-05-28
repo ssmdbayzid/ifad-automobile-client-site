@@ -11,9 +11,6 @@ const Dashboard = () => {
     if(isLoading){
         return <Loading></Loading>
     }
-
-
-    console.log(allUser)
     return (
         <div className="drawer drawer-mobile">
             <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />

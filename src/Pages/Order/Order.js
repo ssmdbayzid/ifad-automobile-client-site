@@ -16,7 +16,7 @@ const Order = () => {
     }, [])
 
     const handleRemoveProduct = (id) => {
-        const proceed = window.confirm('Are You Sire');
+        const proceed = window.confirm('Are You Sure');
         if (proceed) {
             const url = `https://intense-ocean-10974.herokuapp.com/purchased/${id}`;
 
@@ -25,6 +25,7 @@ const Order = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data)
                     if (data.deletedCount > 0) {
                         const remainingProduct = bookedParts.filter(product => product._id !== id);
                         setBookedParts(remainingProduct)
