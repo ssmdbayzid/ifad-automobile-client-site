@@ -16,10 +16,23 @@ const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
         createUserWithEmailAndPassword, signInUser, signInLoading, error1, ] = useCreateUserWithEmailAndPassword(auth);
 
     const navigate = useNavigate()
-        
+
+
+    const email = gUser?.user?.email;  
+    const name =  gUser?.user?.displayName;    
     if(signInLoading || gLoading){
         return <Loading></Loading>;
     }
+
+    fetch("http://localhost:5000/user", {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify({email: email, name: name})
+            })
+            .then(res=>res.json())
+            .then(data=>console.log(data))
     
     let errors;
 
@@ -35,6 +48,18 @@ const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
             const email = e.target.email.value;
             const password = e.target.password.value;
             createUserWithEmailAndPassword(email, password)
+
+
+            
+            fetch("http://localhost:5000/user", {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify({email: email})
+            })
+            .then(res=>res.json())
+            .then(data=>console.log(data))
             }
 
 

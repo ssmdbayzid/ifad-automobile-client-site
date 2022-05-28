@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const Review = () => {
     const [user] = useAuthState(auth)
 
-    console.log(user.photoURL)
     const handleReview = event => {
         event.preventDefault()
         
@@ -41,7 +40,6 @@ const Review = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             if(data.acknowledged){
                 toast('Thanks for Your Review')
             }
