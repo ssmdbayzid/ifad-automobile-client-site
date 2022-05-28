@@ -8,20 +8,20 @@ const AllUser = () => {
     // const [allUser, setAlluser] = useState([])
 
     // useEffect(()=>{
-    //     fetch('http://localhost:5000/user')
+    //     fetch('https://intense-ocean-10974.herokuapp.com/user')
     //     .then(res=>res.json())
     //     .then(data=>{
     //         setAlluser(data)
     //     })
     // },[])
-    const {data: allUser, isLoading, refetch} = useQuery('users', () => fetch('http://localhost:5000/user').then(res=>res.json()))
+    const {data: allUser, isLoading, refetch} = useQuery('users', () => fetch('https://intense-ocean-10974.herokuapp.com/user').then(res=>res.json()))
 
     if(isLoading){
         return <Loading></Loading>
     }
     const makeAdmin = (email) =>{
 
-        fetch(`http://localhost:5000/admin/user/${email}`, {
+        fetch(`https://intense-ocean-10974.herokuapp.com/admin/user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type' : 'json/application'
@@ -40,7 +40,7 @@ const AllUser = () => {
     const removeUser = (id) => {
         const proceed = window.confirm('Are You Sire');
         if(proceed){
-            const url = `http://localhost:5000/user/${id}`;
+            const url = `https://intense-ocean-10974.herokuapp.com/user/${id}`;
 
             fetch( url,{
                 method: 'DELETE'
@@ -59,7 +59,7 @@ const AllUser = () => {
     }
     return (
         <div>
-            <h1>All User is Heere</h1>
+            <h1 className='text-3xl text-center bg-primary text-white rounded'>All User Board</h1>
 
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">

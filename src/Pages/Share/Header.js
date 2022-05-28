@@ -19,7 +19,7 @@ const Header = () => {
         <li><Link to={'/about'}>About</Link></li>
         {user && <li><Link to={'/order'}>Order</Link></li>}
         { user && <li><Link to={'/review'}>Add a Reviews</Link></li>}
-        { user && <li><Link to={'/profile'}>My Profile</Link></li>}
+        <li><Link to={'/protpolio'}>My Portfolio</Link></li>
         <li><Link to={'/blog'}>Blog</Link></li>
         {user && <li><Link to={'dashboard'}>Dashboard</Link></li>}
         {user ? <button onClick={logOut} className='btn mx-3 btn-secondary'>Log Out</button>

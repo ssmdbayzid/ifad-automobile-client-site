@@ -25,7 +25,7 @@ const Profile = () => {
                 idLink: idLink
             }
 
-            fetch('http://localhost:5000/user', {
+            fetch('https://intense-ocean-10974.herokuapp.com/user', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

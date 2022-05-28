@@ -19,7 +19,7 @@ const AllProduct = () => {
     const removePart = (id) => {
         const proceed = window.confirm('Are You Sire');
         if(proceed){
-            const url = `http://localhost:5000/part/${id}`;
+            const url = `https://intense-ocean-10974.herokuapp.com/part/${id}`;
 
             fetch( url,{
                 method: 'DELETE'

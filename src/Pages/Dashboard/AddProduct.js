@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
 
+
+    const navigate = useNavigate()
     const handleReview = event => {
         event.preventDefault()
         
@@ -30,7 +33,7 @@ const AddProduct = () => {
         }
 
         console.log(newProduct)
-        fetch("http://localhost:5000/part",{
+        fetch("https://intense-ocean-10974.herokuapp.com/part",{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -41,6 +44,7 @@ const AddProduct = () => {
         .then(data=>{
             if(data.acknowledged){
                 toast('Added New Product')
+                navigate('/dashboard')
             }
         })
         

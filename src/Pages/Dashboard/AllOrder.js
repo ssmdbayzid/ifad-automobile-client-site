@@ -5,7 +5,7 @@ import Loading from '../Share/Loading';
 
 
 const AllOrder = () => {
-    const {data: allOrder, isLoading, refetch} = useQuery('users', () => fetch('http://localhost:5000/allOrder').then(res=>res.json()))
+    const {data: allOrder, isLoading, refetch} = useQuery('users', () => fetch('https://intense-ocean-10974.herokuapp.com/allOrder').then(res=>res.json()))
 
     if(isLoading){
         return <Loading></Loading>
@@ -17,7 +17,7 @@ const AllOrder = () => {
     const removeOrder = (id) => {
         const proceed = window.confirm('Are You Sire');
         if(proceed){
-            const url = `http://localhost:5000/purchased/${id}`;
+            const url = `https://intense-ocean-10974.herokuapp.com/purchased/${id}`;
 
             fetch( url,{
                 method: 'DELETE'

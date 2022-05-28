@@ -18,7 +18,7 @@ const Purchase = () => {
     const { name, img, description, MOQ, Available_Qty, Price } = part;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/part/${id}`)
+        fetch(`https://intense-ocean-10974.herokuapp.com/part/${id}`)
             .then(res => res.json())
             .then(data => setPart(data))
     }, [])
@@ -59,7 +59,7 @@ const Purchase = () => {
             price: Price
         }
         
-        fetch("http://localhost:5000/purchase", {
+        fetch("https://intense-ocean-10974.herokuapp.com/purchase", {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -74,7 +74,7 @@ const Purchase = () => {
                 }
         })
         
-        // fetch("http://localhost:5000/user", {
+        // fetch("https://intense-ocean-10974.herokuapp.com/user", {
         //         method: 'POST',
         //         headers: {
         //             'content-type' : 'application/json'

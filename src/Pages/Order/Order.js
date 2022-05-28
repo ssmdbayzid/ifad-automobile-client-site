@@ -9,7 +9,7 @@ const Order = () => {
     const [user] = useAuthState(auth)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/purchased?email=${user.email}`)
+        fetch(`https://intense-ocean-10974.herokuapp.com/purchased?email=${user.email}`)
             .then(res => res.json())
             .then(data => setBookedParts(data))
 
@@ -18,7 +18,7 @@ const Order = () => {
     const handleRemoveProduct = (id) => {
         const proceed = window.confirm('Are You Sire');
         if (proceed) {
-            const url = `http://localhost:5000/purchased/${id}`;
+            const url = `https://intense-ocean-10974.herokuapp.com/purchased/${id}`;
 
             fetch(url, {
                 method: 'DELETE'

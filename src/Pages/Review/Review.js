@@ -31,7 +31,7 @@ const Review = () => {
             Rating: rating
         }
 
-        fetch("http://localhost:5000/review",{
+        fetch("https://intense-ocean-10974.herokuapp.com/review",{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
