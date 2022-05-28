@@ -41,11 +41,7 @@ const Dashboard = () => {
                     <li><Link to={'allProduct'} >Manage Products</Link></li>
                     </ul>
                     </div>)
-                    }
-                    
-             
-
-            
+                    }                                             
         </div>
     );
 };
