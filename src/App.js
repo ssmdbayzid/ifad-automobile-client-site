@@ -16,6 +16,7 @@ import Order from './Pages/Order/Order';
 import AllUser from './Pages/Dashboard/AllUser';
 import AllOrder from './Pages/Dashboard/AllOrder';
 import AllProduct from './Pages/Dashboard/AllProduct';
+import AddProduct from './Pages/Dashboard/AddProduct';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path='allUser' element={<AllUser></AllUser>}></Route>
           <Route path='allOrder' element={<AllOrder></AllOrder>}></Route>
           <Route path='allProduct' element={<AllProduct></AllProduct>}></Route>
+          <Route path='addProduct' element={<AddProduct></AddProduct>}></Route>
         </Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
